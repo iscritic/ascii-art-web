@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Art Generator</title>
+</head>
+
+<body>
+    <h1>ASCII Art Generator</h1>
+
+    <form method="post" action="/">
+        <label for="text">Text:</label>
+        <input type="text" id="text" name="text" required>
+        <br>
+
+        <label for="banner">Choose a Banner:</label>
+        <select id="banner" name="banner">
+            <option value="shadow">Shadow</option>
+            <option value="standard" selected>Standard</option>
+            <option value="thinkertoy">Thinkertoy</option>
+        </select>
+        <br>
+
+        <button type="submit">Generate ASCII Art</button>
+    </form>
+
+    {{ if .Result }}
+    <h2>ASCII Art Result:</h2>
+    <pre>{{ .Result }}</pre>
+    {{ end }}
+
+</body>
+
+</html>
