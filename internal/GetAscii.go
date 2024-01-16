@@ -49,7 +49,7 @@ func GetAscii(text, data string) string {
 }
 
 func CreateMap(s string) map[rune][]string {
-	s = strings.ReplaceAll(s, "\r", "")
+	s = strings.ReplaceAll(s, "\r\n", "\n")
 	lines := strings.Split(s, "\n")
 
 	table := make(map[rune][]string)
