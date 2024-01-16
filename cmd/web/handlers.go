@@ -14,7 +14,6 @@ type PageData struct {
 var templates = template.Must(template.ParseFiles("templates/index.html"))
 
 func Home(w http.ResponseWriter, r *http.Request) {
-
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
@@ -25,6 +24,15 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		banners := []string{"shadow", "standard", "thinkertoy"}
 		data := PageData{Banners: banners}
 		templates.ExecuteTemplate(w, "index.html", data)
+	default:
+		w.Header().Set("Allow", "GET")
+		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		return
+	}
+}
+
+func AsciiArt(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
 	case http.MethodPost:
 		text := r.FormValue("text")
 		selectedBanner := r.FormValue("banner")
@@ -36,13 +44,10 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		}
 		data := PageData{Result: result}
 		templates.ExecuteTemplate(w, "index.html", data)
+
 	default:
-		w.Header().Set("Allow", "POST, GET")
+		w.Header().Set("Allow", "POST")
 		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 		return
 	}
-}
-
-func AsciiArt(w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
