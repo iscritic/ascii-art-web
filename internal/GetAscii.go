@@ -7,7 +7,7 @@ import (
 func GetAscii(text, data string) string {
 	table := CreateMap(string(data))
 
-	text = strings.ReplaceAll(text, "\\n", "\n")
+	// text = strings.ReplaceAll(text, "\\n", "\n")
 
 	s := customSplit(text)
 

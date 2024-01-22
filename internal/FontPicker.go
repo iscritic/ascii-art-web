@@ -14,7 +14,6 @@ const (
 )
 
 func FontPicker(font string) (string, error) {
-
 	errf := errors.New("the font does not exist, or has been corrupted")
 
 	file, err := os.Open("./fonts/" + font + ".txt")
@@ -32,20 +31,7 @@ func FontPicker(font string) (string, error) {
 	hasher.Write(data)
 	generatedHash := fmt.Sprintf("%x", hasher.Sum(nil))
 
-	switch font {
-	case "standard":
-		if generatedHash != StandardHash {
-			return "", errf
-		}
-	case "shadow":
-		if generatedHash != ShadowHash {
-			return "", errf
-		}
-	case "thinkertoy":
-		if generatedHash != ThinkertoyHash {
-			return "", errf
-		}
-	default:
+	if generatedHash != StandardHash && generatedHash != ShadowHash && generatedHash != ThinkertoyHash {
 		return "", errf
 	}
 

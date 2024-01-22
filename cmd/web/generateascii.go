@@ -1,18 +1,14 @@
 package main
 
-import (
-	. "ascii/internal"
-)
+import "ascii/internal"
 
 func GenerateAscii(text, banner string) (string, error) {
-
-	data, err := FontPicker(banner)
+	data, err := internal.FontPicker(banner)
 	if err != nil {
 		return "", err
 	}
 
-	output := GetAscii(text, data)
+	output := internal.GetAscii(text, data)
 
 	return output, nil
-
 }

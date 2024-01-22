@@ -4,26 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/main.css">
     <title>ASCII Art Generator</title>
 </head>
 
-<body>
+<body style="text-align: center;">
     <h1>ASCII Art Generator</h1>
 
-    <form method="post" action="/ascii-art">
-        <label for="text">Text:</label>
-        <input type="text" id="text" name="text" required>
+    <form action="/ascii-art" method="post" >
+        <textarea name="text" id="text" cols="50" rows="10" placeholder="Write your text here..." maxlength="500" required></textarea>
         <br>
-
         <label for="banner">Choose a Banner:</label>
         <select id="banner" name="banner">
-            <option value="shadow">Shadow</option>
             <option value="standard" selected>Standard</option>
+            <option value="shadow">Shadow</option>
             <option value="thinkertoy">Thinkertoy</option>
         </select>
         <br>
 
-        <button type="submit">Generate ASCII Art</button>
+        <button type="submit" style="margin: 10px;">Generate ASCII Art</button>
     </form>
 
     {{ if .Result }}
